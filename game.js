@@ -29,9 +29,14 @@ let stateCheck = setInterval(() => {
     
     // greeding user
     var name = prompt("Enter your name");  
-    //var save = prompt("Do you want to save your score? (Y)es or (N)o").toLowerCase
-    if (name != null) {  alert("Welcome " + name);} ; 
-
+    var save = prompt("Do you want to save your score? (Y)es or (N)o").toLowerCase();
+    if (name != null) { alert("Welcome " + name);} ; 
+    
+    // gets a score ; there is some scores stored in the local storage_
+    if (localStorage.getItem(name) != null){
+      score = localStorage.getItem(name)
+    };
+       
     // start the game 
     start.addEventListener("mouseover", mouseOver) ;
     function mouseOver() {
@@ -68,6 +73,9 @@ let stateCheck = setInterval(() => {
           end_counter = 0;
         };
       };
+      if (save == "Y") {
+        localStorage.setItem(name, score);
+      }
     // refresh the page on start click
     refresh();
   };
